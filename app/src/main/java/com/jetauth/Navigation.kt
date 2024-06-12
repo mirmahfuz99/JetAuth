@@ -9,10 +9,11 @@ import com.jetauth.Destinations.HOME_ROUTE
 import com.jetauth.Destinations.SIGN_IN_ROUTE
 import com.jetauth.Destinations.SIGN_UP_ROUTE
 import com.jetauth.auth.SignInRoute
+import com.jetauth.auth.SignUpRoute
 
 
 object Destinations {
-    const val SIGN_UP_ROUTE = "signup/{email}"
+    const val SIGN_UP_ROUTE = "signup"
     const val SIGN_IN_ROUTE = "signin"
     const val HOME_ROUTE = "home"
 }
@@ -23,7 +24,7 @@ fun JetAuthNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = SIGN_IN_ROUTE,
+        startDestination = SIGN_UP_ROUTE,
     ) {
 
         composable(SIGN_IN_ROUTE) {
@@ -39,6 +40,21 @@ fun JetAuthNavHost(
                 onNavUp = navController::navigateUp,
             )
         }
+
+        composable(SIGN_UP_ROUTE) {
+            val startingEmail = it.arguments?.getString("email")
+            SignUpRoute(
+                email = startingEmail,
+                onSignUpSubmitted = {
+                    navController.navigate(HOME_ROUTE)
+                },
+                onSignInAsGuest = {
+                    navController.navigate(HOME_ROUTE)
+                },
+                onNavUp = navController::navigateUp,
+            )
+        }
+
 
     }
 }

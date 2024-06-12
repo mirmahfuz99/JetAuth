@@ -14,4 +14,9 @@
     <string name="login">Login</string>
     <string name="fb">fb</string>
     <string name="createNewAccount">Create New Account</string>
+    <string name="signup">Sign Up</string>
+    <string name="alreadyHaveAnAccount">Already have an account?</string>
+    <string name="name">Name</string>
+    <string name="confirm_password">Confirm Passsword</string>
+    <string name="jetpackCompose">Jetpack Compose</string>
 </resources>

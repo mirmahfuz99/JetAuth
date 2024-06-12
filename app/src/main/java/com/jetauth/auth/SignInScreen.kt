@@ -139,7 +139,7 @@ fun SignInContent(
             modifier = Modifier
                 .padding(15.dp)
                 .fillMaxSize(),
-            painter = painterResource(R.drawable.google), contentDescription = stringResource(id = R.string.fb))
+            painter = painterResource(R.drawable.jetpack_compose), contentDescription = stringResource(id = R.string.jetpackCompose))
 
         Spacer(modifier = Modifier.height(85.dp))
         Text(
@@ -219,131 +219,6 @@ fun ErrorSnackbar(
 }
 
 
-@Composable
-fun Email(
-    emailState: TextFieldState = remember { EmailState() },
-    imeAction: ImeAction = ImeAction.Next,
-    onImeAction: () -> Unit = {}
-) {
-    OutlinedTextField(
-        value = emailState.text,
-        onValueChange = {
-            emailState.text = it
-        },
-        label = {
-            Text(
-                text = stringResource(id = R.string.email),
-                style = MaterialTheme.typography.bodyMedium,
-            )
-        },
-        modifier = Modifier
-            .fillMaxWidth()
-            .onFocusChanged { focusState ->
-                emailState.onFocusChange(focusState.isFocused)
-                if (!focusState.isFocused) {
-                    emailState.enableShowErrors()
-                }
-            },
-        textStyle = MaterialTheme.typography.bodyMedium,
-        isError = emailState.showErrors(),
-        keyboardOptions = KeyboardOptions.Default.copy(
-            imeAction = imeAction,
-            keyboardType = KeyboardType.Email
-        ),
-        keyboardActions = KeyboardActions(
-            onDone = {
-                onImeAction()
-            }
-        ),
-        singleLine = true
-    )
-
-    emailState.getError()?.let { error -> TextFieldError(textError = error) }
-}
-
-@Composable
-fun Password(
-    label: String,
-    passwordState: TextFieldState,
-    modifier: Modifier = Modifier,
-    imeAction: ImeAction = ImeAction.Done,
-    onImeAction: () -> Unit = {}
-) {
-    val showPassword = rememberSaveable { mutableStateOf(false) }
-    OutlinedTextField(
-        value = passwordState.text,
-        onValueChange = {
-            passwordState.text = it
-            passwordState.enableShowErrors()
-        },
-        modifier = modifier
-            .fillMaxWidth()
-            .onFocusChanged { focusState ->
-                passwordState.onFocusChange(focusState.isFocused)
-                if (!focusState.isFocused) {
-                    passwordState.enableShowErrors()
-                }
-            },
-        textStyle = MaterialTheme.typography.bodyMedium,
-        label = {
-            Text(
-                text = label,
-                style = MaterialTheme.typography.bodyMedium,
-            )
-        },
-        trailingIcon = {
-            if (showPassword.value) {
-                IconButton(onClick = { showPassword.value = false }) {
-                    Icon(
-                        imageVector = Icons.Filled.Visibility,
-                        contentDescription = stringResource(id = R.string.hide_password)
-                    )
-                }
-            } else {
-                IconButton(onClick = { showPassword.value = true }) {
-                    Icon(
-                        imageVector = Icons.Filled.VisibilityOff,
-                        contentDescription = stringResource(id = R.string.show_password)
-                    )
-                }
-            }
-        },
-        visualTransformation = if (showPassword.value) {
-            VisualTransformation.None
-        } else {
-            PasswordVisualTransformation()
-        },
-        isError = passwordState.showErrors(),
-        supportingText = {
-            passwordState.getError()?.let { error -> TextFieldError(textError = error) }
-        },
-        keyboardOptions = KeyboardOptions.Default.copy(
-            imeAction = imeAction,
-            keyboardType = KeyboardType.Password
-        ),
-        keyboardActions = KeyboardActions(
-            onDone = {
-                onImeAction()
-            }
-        ),
-        singleLine = true
-    )
-}
-
-/**
- * To be removed when [TextField]s support error
- */
-@Composable
-fun TextFieldError(textError: String) {
-    Row(modifier = Modifier.fillMaxWidth()) {
-        Spacer(modifier = Modifier.width(16.dp))
-        Text(
-            text = textError,
-            modifier = Modifier.fillMaxWidth(),
-            color = MaterialTheme.colorScheme.error
-        )
-    }
-}
 
 
 @Preview(name = "Sign in light theme", uiMode = UI_MODE_NIGHT_NO)
