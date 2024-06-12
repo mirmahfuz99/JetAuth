@@ -2,6 +2,8 @@ package com.jetauth.auth
 
 import android.content.res.Configuration.UI_MODE_NIGHT_NO
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import android.media.Image
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,6 +14,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -46,8 +50,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import com.jetauth.R
 import com.jetauth.ui.theme.JetAuthTheme
+import com.jetauth.ui.theme.stronglyDeemphasizedAlpha
 import com.jetauth.util.supportWideScreen
 import kotlinx.coroutines.launch
 
@@ -76,21 +85,27 @@ fun SignInScreen(
                     SignInContent(
                         email = email,
                         onSignInSubmitted = onSignInSubmitted,
-                    )
-                    Spacer(modifier = Modifier.height(16.dp))
-                    TextButton(
-                        onClick = {
-                            scope.launch {
-                                snackbarHostState.showSnackbar(
-                                    message = snackbarErrorText,
-                                    actionLabel = snackbarActionLabel
+                        forgotContent = {
+                            TextButton(
+                                onClick = {
+                                    scope.launch {
+                                        snackbarHostState.showSnackbar(
+                                            message = snackbarErrorText,
+                                            actionLabel = snackbarActionLabel
+                                        )
+                                    }
+                                },
+                                modifier = Modifier.align(alignment = Alignment.End)
+                            ) {
+                                Text(
+                                    text = stringResource(id = R.string.forgot_password),
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = stronglyDeemphasizedAlpha),
                                 )
                             }
-                        },
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Text(text = stringResource(id = R.string.forgot_password))
-                    }
+                        }
+                    )
+
                 }
             }
         }
@@ -109,12 +124,29 @@ fun SignInScreen(
 fun SignInContent(
     email: String?,
     onSignInSubmitted: (email: String, password: String) -> Unit,
+    forgotContent: @Composable () -> Unit,
 ) {
-    Column(modifier = Modifier.fillMaxWidth()) {
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         val focusRequester = remember { FocusRequester() }
         val emailState by rememberSaveable(stateSaver = EmailStateSaver) {
             mutableStateOf(EmailState(email))
         }
+
+        Image(
+            modifier = Modifier
+                .padding(15.dp)
+                .fillMaxSize(),
+            painter = painterResource(R.drawable.google), contentDescription = stringResource(id = R.string.fb))
+
+        Spacer(modifier = Modifier.height(85.dp))
+        Text(
+            text = stringResource(id = R.string.sign_in),
+            style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
+        )
+        Spacer(modifier = Modifier.height(16.dp))
         Email(emailState, onImeAction = { focusRequester.requestFocus() })
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -132,16 +164,20 @@ fun SignInContent(
             modifier = Modifier.focusRequester(focusRequester),
             onImeAction = { onSubmit() }
         )
+        forgotContent()
         Spacer(modifier = Modifier.height(16.dp))
         Button(
+
             onClick = { onSubmit() },
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 16.dp),
+                .padding(vertical = 25.dp),
+            shape = RoundedCornerShape(10.dp),
             enabled = emailState.isValid && passwordState.isValid
         ) {
             Text(
-                text = stringResource(id = R.string.sign_in)
+                modifier = Modifier.padding(15.dp),
+                text = stringResource(id = R.string.login)
             )
         }
     }
@@ -311,7 +347,7 @@ fun TextFieldError(textError: String) {
 
 
 @Preview(name = "Sign in light theme", uiMode = UI_MODE_NIGHT_NO)
-@Preview(name = "Sign in dark theme", uiMode = UI_MODE_NIGHT_YES)
+//@Preview(name = "Sign in dark theme", uiMode = UI_MODE_NIGHT_YES)
 @Composable
 fun SignInPreview() {
     JetAuthTheme {

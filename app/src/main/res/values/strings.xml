@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">JetAuth</string>
-    <string name="forgot_password">Forgot Password</string>
+    <string name="forgot_password">Forgot Password?</string>
     <string name="password">Password</string>
     <string name="sign_in">Sign In</string>
     <string name="feature_not_available">Feature Not Implemented</string>
@@ -11,4 +11,7 @@
     <string name="sign_in_guest">Sign In As Guest</string>
     <string name="or">or</string>
     <string name="back">back</string>
+    <string name="login">Login</string>
+    <string name="fb">fb</string>
+    <string name="createNewAccount">Create New Account</string>
 </resources>

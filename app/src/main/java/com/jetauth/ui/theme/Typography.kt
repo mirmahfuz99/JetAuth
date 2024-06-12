@@ -8,7 +8,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.jetauth.R
 
-val MontserratFontFamily = FontFamily(
+val RobotFontFamily = FontFamily(
     listOf(
         Font(R.font.roboto_regular),
         Font(R.font.roboto_medium, FontWeight.Medium),
@@ -19,7 +19,7 @@ val MontserratFontFamily = FontFamily(
 val Typography = Typography(
     // Display Large - Montserrat 57/64 . -0.25px
     displayLarge = TextStyle(
-        fontFamily = MontserratFontFamily,
+        fontFamily = RobotFontFamily,
         fontWeight = FontWeight.W400,
         fontSize = 57.sp,
         lineHeight = 64.sp,
@@ -28,7 +28,7 @@ val Typography = Typography(
 
     // Display Medium - Montserrat 45/52 . 0px
     displayMedium = TextStyle(
-        fontFamily = MontserratFontFamily,
+        fontFamily = RobotFontFamily,
         fontWeight = FontWeight.W400,
         fontSize = 45.sp,
         lineHeight = 52.sp,
@@ -37,7 +37,7 @@ val Typography = Typography(
 
     // Display Small - Montserrat 36/44 . 0px
     displaySmall = TextStyle(
-        fontFamily = MontserratFontFamily,
+        fontFamily = RobotFontFamily,
         fontWeight = FontWeight.W400,
         fontSize = 36.sp,
         lineHeight = 44.sp,
@@ -46,7 +46,7 @@ val Typography = Typography(
 
     // Headline Large - Montserrat 32/40 . 0px
     headlineLarge = TextStyle(
-        fontFamily = MontserratFontFamily,
+        fontFamily = RobotFontFamily,
         fontWeight = FontWeight.W400,
         fontSize = 32.sp,
         lineHeight = 40.sp,
@@ -55,7 +55,7 @@ val Typography = Typography(
 
     // Headline Medium - Montserrat 28/36 . 0px
     headlineMedium = TextStyle(
-        fontFamily = MontserratFontFamily,
+        fontFamily = RobotFontFamily,
         fontWeight = FontWeight.W400,
         fontSize = 28.sp,
         lineHeight = 36.sp,
@@ -64,7 +64,7 @@ val Typography = Typography(
 
     // Headline Small - Montserrat 24/32 . 0px
     headlineSmall = TextStyle(
-        fontFamily = MontserratFontFamily,
+        fontFamily = RobotFontFamily,
         fontWeight = FontWeight.W400,
         fontSize = 24.sp,
         lineHeight = 32.sp,
@@ -73,7 +73,7 @@ val Typography = Typography(
 
     // Title Large - Montserrat 22/28 . 0px
     titleLarge = TextStyle(
-        fontFamily = MontserratFontFamily,
+        fontFamily = RobotFontFamily,
         fontWeight = FontWeight.W400,
         fontSize = 22.sp,
         lineHeight = 28.sp,
@@ -82,7 +82,7 @@ val Typography = Typography(
 
     // Title Medium - Montserrat 16/24 . 0.15px
     titleMedium = TextStyle(
-        fontFamily = MontserratFontFamily,
+        fontFamily = RobotFontFamily,
         fontWeight = FontWeight.W500,
         fontSize = 16.sp,
         lineHeight = 24.sp,
@@ -91,7 +91,7 @@ val Typography = Typography(
 
     // Title Small - Montserrat 14/20 . 0.1px
     titleSmall = TextStyle(
-        fontFamily = MontserratFontFamily,
+        fontFamily = RobotFontFamily,
         fontWeight = FontWeight.W500,
         fontSize = 14.sp,
         lineHeight = 20.sp,
@@ -100,7 +100,7 @@ val Typography = Typography(
 
     // Label Large - Montserrat 14/20 . 0.1px
     labelLarge = TextStyle(
-        fontFamily = MontserratFontFamily,
+        fontFamily = RobotFontFamily,
         fontWeight = FontWeight.W500,
         fontSize = 14.sp,
         lineHeight = 20.sp,
@@ -109,7 +109,7 @@ val Typography = Typography(
 
     // Label Medium - Montserrat 12/16 . 0.5px
     labelMedium = TextStyle(
-        fontFamily = MontserratFontFamily,
+        fontFamily = RobotFontFamily,
         fontWeight = FontWeight.W500,
         fontSize = 12.sp,
         lineHeight = 16.sp,
@@ -118,7 +118,7 @@ val Typography = Typography(
 
     // Label Small - Montserrat 11/16 . 0.5px
     labelSmall = TextStyle(
-        fontFamily = MontserratFontFamily,
+        fontFamily = RobotFontFamily,
         fontWeight = FontWeight.W500,
         fontSize = 11.sp,
         lineHeight = 16.sp,
@@ -127,7 +127,7 @@ val Typography = Typography(
 
     // Body Large - Montserrat 16/24 . 0.5px
     bodyLarge = TextStyle(
-        fontFamily = MontserratFontFamily,
+        fontFamily = RobotFontFamily,
         fontWeight = FontWeight.W400,
         fontSize = 16.sp,
         lineHeight = 24.sp,
@@ -136,7 +136,7 @@ val Typography = Typography(
 
     // Body Medium - Montserrat 14/20 . 0.25px
     bodyMedium = TextStyle(
-        fontFamily = MontserratFontFamily,
+        fontFamily = RobotFontFamily,
         fontWeight = FontWeight.W400,
         fontSize = 14.sp,
         lineHeight = 20.sp,
@@ -144,7 +144,7 @@ val Typography = Typography(
     ),
     // Body Small - Montserrat 12/16 . 0.4px
     bodySmall = TextStyle(
-        fontFamily = MontserratFontFamily,
+        fontFamily = RobotFontFamily,
         fontWeight = FontWeight.W400,
         fontSize = 12.sp,
         lineHeight = 16.sp,

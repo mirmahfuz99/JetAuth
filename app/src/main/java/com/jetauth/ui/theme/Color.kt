@@ -3,11 +3,11 @@ package com.jetauth.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val md_theme_light_primary = Color(0xFF8307F0)
+val md_theme_light_primary = Color(0xFFF75F55)
 val md_theme_light_onPrimary = Color(0xFFFFFFFF)
 val md_theme_light_primaryContainer = Color(0xFFEEDCFF)
 val md_theme_light_onPrimaryContainer = Color(0xFF2A0054)
-val md_theme_light_secondary = Color(0xFF655A6F)
+val md_theme_light_secondary = Color(0xFF656069)
 val md_theme_light_onSecondary = Color(0xFFFFFFFF)
 val md_theme_light_secondaryContainer = Color(0xFFEBDDF7)
 val md_theme_light_onSecondaryContainer = Color(0xFF20182A)
