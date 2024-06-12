@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">JetAuth</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="feature_not_available">Feature Not Implemented</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="email">Email</string>
+    <string name="hide_password">Hide Password</string>
+    <string name="show_password">Show Password</string>
+    <string name="sign_in_guest">Sign In As Guest</string>
+    <string name="or">or</string>
+    <string name="back">back</string>
+</resources>
