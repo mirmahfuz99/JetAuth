@@ -105,7 +105,7 @@ fun SignUpContent(
         val passwordState = remember { PasswordState() }
 
         val onSubmit = {
-            if (emailState.isValid && passwordState.isValid) {
+            if (nameState.isValid && emailState.isValid && passwordState.isValid) {
                 onSignUpSubmitted(nameState.text, emailState.text, passwordState.text)
             }
         }

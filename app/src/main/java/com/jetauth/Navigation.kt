@@ -56,5 +56,20 @@ fun JetAuthNavHost(
         }
 
 
+        composable(HOME_ROUTE) {
+            val startingEmail = it.arguments?.getString("email")
+            SignUpRoute(
+                email = startingEmail,
+                onSignUpSubmitted = {
+                    navController.navigate(HOME_ROUTE)
+                },
+                onSignInAsGuest = {
+                    navController.navigate(HOME_ROUTE)
+                },
+                onNavUp = navController::navigateUp,
+            )
+        }
+
+
     }
 }
