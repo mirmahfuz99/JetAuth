@@ -1,4 +1,4 @@
-package com.jetauth.auth.presentation
+package com.jetauth.features.login.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
