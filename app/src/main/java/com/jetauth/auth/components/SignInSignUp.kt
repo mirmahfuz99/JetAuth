@@ -1,12 +1,11 @@
 
 
-package com.jetauth.auth
+package com.jetauth.auth.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -17,25 +16,20 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ChevronLeft
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
-import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -61,7 +55,7 @@ import com.jetauth.ui.theme.stronglyDeemphasizedAlpha
 
 @Composable
 fun SignInSignUpScreen(
-    onSignInAsGuest: () -> Unit,
+    createNewAccount: () -> Unit,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(),
     content: @Composable () -> Unit
@@ -103,7 +97,7 @@ fun SignInSignUpScreen(
 
             Spacer(modifier = Modifier.height(20.dp))
             CreateNewAccount(
-                onSignInAsGuest = onSignInAsGuest,
+                createNewAccount = createNewAccount,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 20.dp)
@@ -143,16 +137,18 @@ fun CustomSocialButton(
 
 @Composable
 fun CreateNewAccount(
-    onSignInAsGuest: () -> Unit,
+    createNewAccount: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Text(
-        
-        text = stringResource(id = R.string.createNewAccount),
-        style = MaterialTheme.typography.titleSmall,
-        color = MaterialTheme.colorScheme.onSurface.copy(alpha = stronglyDeemphasizedAlpha),
-        modifier = Modifier.paddingFromBaseline(top = 25.dp)
-    )
+    TextButton(
+        onClick = createNewAccount) {
+        Text(
+            text = stringResource(id = R.string.createNewAccount),
+            style = MaterialTheme.typography.titleSmall,
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = stronglyDeemphasizedAlpha),
+            modifier = Modifier.paddingFromBaseline(top = 25.dp)
+        )
+    }
 }
 
 
@@ -349,7 +345,7 @@ fun SignInSignUpScreenPreview() {
     JetAuthTheme {
         Surface {
             SignInSignUpScreen(
-                onSignInAsGuest = {},
+                createNewAccount = {},
                 content = {}
             )
         }

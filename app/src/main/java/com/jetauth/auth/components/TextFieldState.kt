@@ -1,5 +1,5 @@
 
-package com.jetauth.auth
+package com.jetauth.auth.components
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

@@ -1,5 +1,5 @@
 
-package com.jetauth.auth
+package com.jetauth.auth.components
 
 class PasswordState :
     TextFieldState(validator = ::isPasswordValid, errorFor = ::passwordValidationError)

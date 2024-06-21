@@ -1,4 +1,4 @@
-package com.jetauth.auth
+package com.jetauth.auth.components
 
 
 class NameState(val name: String? = null) :

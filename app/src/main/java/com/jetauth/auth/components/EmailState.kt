@@ -1,6 +1,6 @@
 
 
-package com.jetauth.auth
+package com.jetauth.auth.components
 
 import java.util.regex.Pattern
 

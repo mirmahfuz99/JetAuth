@@ -1,4 +1,4 @@
-package com.jetauth.auth
+package com.jetauth.features.signup.presentation.pages
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
@@ -26,6 +26,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jetauth.R
+import com.jetauth.auth.components.ConfirmPasswordState
+import com.jetauth.auth.components.Email
+import com.jetauth.auth.components.EmailState
+import com.jetauth.auth.components.EmailStateSaver
+import com.jetauth.auth.components.Name
+import com.jetauth.auth.components.NameState
+import com.jetauth.auth.components.NameStateSaver
+import com.jetauth.auth.components.Password
+import com.jetauth.auth.components.PasswordState
+import com.jetauth.auth.components.SignInSignUpScreen
 import com.jetauth.features.login.presentation.pages.SignInScreen
 import com.jetauth.ui.theme.JetAuthTheme
 import com.jetauth.util.supportWideScreen
@@ -35,7 +45,7 @@ import com.jetauth.util.supportWideScreen
 fun SignUpScreen(
     email: String?,
     onSignUpSubmitted: (name: String, email: String, password: String) -> Unit,
-    onSignInAsGuest: () -> Unit,
+    onCreateNewAccount: () -> Unit,
     onNavUp: () -> Unit,
 ) {
 
@@ -45,7 +55,7 @@ fun SignUpScreen(
             SignInSignUpScreen(
                 modifier = Modifier.supportWideScreen(),
                 contentPadding = contentPadding,
-                onSignInAsGuest = onSignInAsGuest,
+                createNewAccount = onCreateNewAccount,
             ) {
                 Column(modifier = Modifier.fillMaxWidth()) {
                     SignUpContent(
@@ -147,7 +157,7 @@ fun SignUpPreview() {
         SignInScreen(
             email = null,
             onSignInSubmitted = { _, _ -> },
-            onSignInAsGuest = {},
+            onCreateNewAccount = {},
             onNavUp = {},
         )
     }

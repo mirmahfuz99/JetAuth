@@ -38,8 +38,8 @@ fun JetAuthNavHost(
                     //read data from local storage
                     navController.navigate(HOME_ROUTE)
                 },
-                onSignInAsGuest = {
-                    navController.navigate(HOME_ROUTE)
+                onCreateNewAccount = {
+                    navController.navigate(SIGN_UP_ROUTE)
                 },
                 onNavUp = navController::navigateUp,
             )
@@ -50,9 +50,9 @@ fun JetAuthNavHost(
             SignUpRoute(
                 email = startingEmail,
                 onSignUpSubmitted = {
-                    navController.navigate(HOME_ROUTE)
+                    navController.navigate(SIGN_IN_ROUTE)
                 },
-                onSignInAsGuest = {
+                onCreateNewAccount = {
                     navController.navigate(HOME_ROUTE)
                 },
                 onNavUp = navController::navigateUp,
@@ -63,7 +63,5 @@ fun JetAuthNavHost(
         composable(HOME_ROUTE) {
             HomeRoute()
         }
-
-
     }
 }

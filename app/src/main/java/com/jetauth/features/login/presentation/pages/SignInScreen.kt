@@ -35,12 +35,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import com.jetauth.R
-import com.jetauth.auth.Email
-import com.jetauth.auth.EmailState
-import com.jetauth.auth.EmailStateSaver
-import com.jetauth.auth.Password
-import com.jetauth.auth.PasswordState
-import com.jetauth.auth.SignInSignUpScreen
+import com.jetauth.auth.components.Email
+import com.jetauth.auth.components.EmailState
+import com.jetauth.auth.components.EmailStateSaver
+import com.jetauth.auth.components.Password
+import com.jetauth.auth.components.PasswordState
+import com.jetauth.auth.components.SignInSignUpScreen
 import com.jetauth.ui.theme.JetAuthTheme
 import com.jetauth.ui.theme.stronglyDeemphasizedAlpha
 import com.jetauth.util.supportWideScreen
@@ -50,7 +50,7 @@ import kotlinx.coroutines.launch
 fun SignInScreen(
     email: String?,
     onSignInSubmitted: (email: String, password: String) -> Unit,
-    onSignInAsGuest: () -> Unit,
+    onCreateNewAccount: () -> Unit,
     onNavUp: () -> Unit,
 ) {
 
@@ -65,7 +65,7 @@ fun SignInScreen(
             SignInSignUpScreen(
                 modifier = Modifier.supportWideScreen(),
                 contentPadding = contentPadding,
-                onSignInAsGuest = onSignInAsGuest,
+                createNewAccount = onCreateNewAccount,
             ) {
                 Column(modifier = Modifier.fillMaxWidth()) {
                     SignInContent(
@@ -216,7 +216,7 @@ fun SignInPreview() {
         SignInScreen(
             email = null,
             onSignInSubmitted = { _, _ -> },
-            onSignInAsGuest = {},
+            onCreateNewAccount = {},
             onNavUp = {},
         )
     }

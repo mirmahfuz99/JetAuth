@@ -1,16 +1,18 @@
-
-
 package com.jetauth.auth
 
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.jetauth.auth.presentation.SignUpViewModel
+import com.jetauth.features.signup.presentation.pages.SignUpScreen
+import com.jetauth.features.signup.presentation.viewmodel.SignUpViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @Composable
 fun SignUpRoute(
     email: String?,
     onSignUpSubmitted: () -> Unit,
-    onSignInAsGuest:() -> Unit,
+    onCreateNewAccount:() -> Unit,
     onNavUp: () -> Unit,
 ) {
     val signUpViewModel: SignUpViewModel = hiltViewModel()
@@ -18,11 +20,16 @@ fun SignUpRoute(
     SignUpScreen(
         email = email,
         onSignUpSubmitted = {name, email, password ->
-                            signUpViewModel.signUp(name, email, password, onSignUpSubmitted)
+                            CoroutineScope(Dispatchers.Main).launch {
+                                signUpViewModel.signUp(
+                                    name = name,
+                                    email = email,
+                                    password = password,
+                                    onSignUpComplete = onSignUpSubmitted
+                                )
+                            }
         },
-        onSignInAsGuest = {
-            signUpViewModel.signInAsGuest(onSignInAsGuest)
-        },
+        onCreateNewAccount = onCreateNewAccount,
         onNavUp = onNavUp,
     )
 }

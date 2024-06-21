@@ -1,5 +1,6 @@
 package com.jetauth.features.login.presentation.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.jetauth.core.db.JetAuthDatabase
 import com.jetauth.features.login.data.repository.LoginRepository
@@ -19,9 +20,10 @@ class SignInViewModel @Inject constructor (
         password: String,
         onSignInComplete: () -> Unit,
     ) {
+
         loginRepository.login(userName = email, password = password)
         //read data from localdb from here
-        print(jetAuthDatabase.userPreferencesDao().getUserPreferences()?.token)
+        Log.d("token",jetAuthDatabase.userPreferencesDao().getUserPreferences()?.token.toString())
         if(jetAuthDatabase.userPreferencesDao().getUserPreferences()?.token != null){
             onSignInComplete()
         }else{
