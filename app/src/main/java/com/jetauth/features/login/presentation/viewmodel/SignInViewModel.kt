@@ -1,14 +1,14 @@
 package com.jetauth.features.login.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import com.jetauth.core.db.JetAuthDatabase
 import com.jetauth.features.login.data.repository.LoginRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import retrofit2.HttpException
 import javax.inject.Inject
 @HiltViewModel
 class SignInViewModel @Inject constructor (
-    private val loginRepository: LoginRepository
+    private val loginRepository: LoginRepository,
+    private val jetAuthDatabase: JetAuthDatabase,
 ): ViewModel() {
 
     /**
@@ -21,8 +21,11 @@ class SignInViewModel @Inject constructor (
     ) {
         loginRepository.login(userName = email, password = password)
         //read data from localdb from here
-        if("tokenn" == "2"){
+        print(jetAuthDatabase.userPreferencesDao().getUserPreferences()?.token)
+        if(jetAuthDatabase.userPreferencesDao().getUserPreferences()?.token != null){
             onSignInComplete()
+        }else{
+            print("outside")
         }
 
     }
