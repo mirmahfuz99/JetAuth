@@ -1,12 +1,11 @@
-
-
 package com.jetauth.auth.presentation
-
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.jetauth.auth.domain.repository.UserRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class SignUpViewModel(private val userRepository: UserRepository) : ViewModel() {
+@HiltViewModel
+class SignUpViewModel @Inject constructor(private val userRepository: UserRepository) : ViewModel() {
 
     /**
      * Consider all sign ups successful
@@ -26,15 +25,5 @@ class SignUpViewModel(private val userRepository: UserRepository) : ViewModel() 
     ) {
         userRepository.signInAsGuest()
         onSignInComplete()
-    }
-}
-
-class SignUpViewModelFactory : ViewModelProvider.Factory {
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(SignUpViewModel::class.java)) {
-            return SignUpViewModel(UserRepository) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

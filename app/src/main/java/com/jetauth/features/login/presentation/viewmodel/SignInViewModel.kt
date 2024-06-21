@@ -2,36 +2,26 @@ package com.jetauth.features.login.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.jetauth.auth.domain.repository.UserRepository
-
-class SignInViewModel(private val userRepository: UserRepository) : ViewModel() {
+import com.jetauth.features.login.data.repository.LoginRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
+@HiltViewModel
+class SignInViewModel @Inject constructor (
+    private val loginRepository: LoginRepository
+): ViewModel() {
 
     /**
      * Consider all sign ins successful
      */
-    fun signIn(
+    suspend fun signIn(
         email: String,
         password: String,
         onSignInComplete: () -> Unit,
     ) {
-        userRepository.signIn(email, password)
+        loginRepository.login(userName = email, password = password)
         onSignInComplete()
     }
 
-    fun signInAsGuest(
-        onSignInComplete: () -> Unit,
-    ) {
-        userRepository.signInAsGuest()
-        onSignInComplete()
-    }
 }
 
-class SignInViewModelFactory : ViewModelProvider.Factory {
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(SignInViewModel::class.java)) {
-            return SignInViewModel(UserRepository) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-}
+

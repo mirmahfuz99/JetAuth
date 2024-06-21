@@ -16,7 +16,7 @@ sealed class User {
  * In a production app, this class would also handle the communication with the backend for
  * sign in and sign up.
  */
-object UserRepository {
+class UserRepository {
 
     private var _user: User = User.NoUserLoggedIn
     val user: User

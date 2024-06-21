@@ -3,9 +3,8 @@
 package com.jetauth.auth
 
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.jetauth.auth.presentation.SignUpViewModel
-import com.jetauth.auth.presentation.SignUpViewModelFactory
 
 @Composable
 fun SignUpRoute(
@@ -14,7 +13,7 @@ fun SignUpRoute(
     onSignInAsGuest:() -> Unit,
     onNavUp: () -> Unit,
 ) {
-    val signUpViewModel: SignUpViewModel = viewModel(factory = SignUpViewModelFactory())
+    val signUpViewModel: SignUpViewModel = hiltViewModel()
 
     SignUpScreen(
         email = email,

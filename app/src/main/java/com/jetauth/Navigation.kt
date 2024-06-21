@@ -11,6 +11,8 @@ import com.jetauth.Destinations.SIGN_UP_ROUTE
 import com.jetauth.auth.HomeRoute
 import com.jetauth.auth.SignInRoute
 import com.jetauth.auth.SignUpRoute
+import com.jetauth.features.login.data.repository.LoginRepoImpl
+import com.jetauth.features.login.data.repository.LoginRepository
 
 
 object Destinations {
