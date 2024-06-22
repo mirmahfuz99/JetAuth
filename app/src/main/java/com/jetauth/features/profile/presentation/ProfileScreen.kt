@@ -1,4 +1,4 @@
-package com.jetauth.home.presentation
+package com.jetauth.features.profile.presentation
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
@@ -15,7 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.jetauth.ui.theme.JetAuthTheme
 
 @Composable
-fun HomeScreen(){
+fun ProfileScreen(){
     Scaffold (
         content = {innerPadding ->
             Box (
@@ -28,7 +28,7 @@ fun HomeScreen(){
 
                 ) {
                     Text(
-                        text = """ Home Screen"""
+                        text = """ Profile Screen"""
                     )
                 }
             }
@@ -38,11 +38,11 @@ fun HomeScreen(){
 }
 
 
-@Preview(name = "HomeScreen light theme", uiMode = Configuration.UI_MODE_NIGHT_NO)
+@Preview(name = "ProfileScreen light theme", uiMode = Configuration.UI_MODE_NIGHT_NO)
 //@Preview(name = "Sign in dark theme", uiMode = UI_MODE_NIGHT_YES)
 @Composable
 fun HomePreview() {
     JetAuthTheme {
-        HomeScreen()
+        ProfileScreen()
     }
 }

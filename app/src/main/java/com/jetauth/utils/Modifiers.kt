@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.jetauth.util
+package com.jetauth.utils
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.widthIn

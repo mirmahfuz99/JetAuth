@@ -2,13 +2,13 @@
 package com.jetauth.auth
 
 import androidx.compose.runtime.Composable
-import com.jetauth.home.presentation.HomeScreen
+import com.jetauth.MainScreen
 
 @Composable
-fun HomeRoute(
+fun MainRoute(
 ) {
 
-    HomeScreen(
+    MainScreen(
 
     )
 }

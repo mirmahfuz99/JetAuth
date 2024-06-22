@@ -30,7 +30,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -45,7 +44,7 @@ import com.jetauth.auth.components.PasswordState
 import com.jetauth.auth.components.SignInSignUpScreen
 import com.jetauth.ui.theme.JetAuthTheme
 import com.jetauth.ui.theme.stronglyDeemphasizedAlpha
-import com.jetauth.util.supportWideScreen
+import com.jetauth.utils.supportWideScreen
 import kotlinx.coroutines.launch
 
 @Composable

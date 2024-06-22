@@ -5,20 +5,17 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.jetauth.Destinations.HOME_ROUTE
+import com.jetauth.Destinations.MAIN_ROUTE
 import com.jetauth.Destinations.SIGN_IN_ROUTE
 import com.jetauth.Destinations.SIGN_UP_ROUTE
-import com.jetauth.auth.HomeRoute
+import com.jetauth.auth.MainRoute
 import com.jetauth.auth.SignInRoute
 import com.jetauth.auth.SignUpRoute
-import com.jetauth.features.login.data.repository.LoginRepoImpl
-import com.jetauth.features.login.data.repository.LoginRepository
-
 
 object Destinations {
     const val SIGN_UP_ROUTE = "signup"
     const val SIGN_IN_ROUTE = "signin"
-    const val HOME_ROUTE = "home"
+    const val MAIN_ROUTE = "main"
 }
 
 @Composable
@@ -36,7 +33,7 @@ fun JetAuthNavHost(
                 email = startingEmail,
                 onSignInSubmitted = {
                     //read data from local storage
-                    navController.navigate(HOME_ROUTE)
+                    navController.navigate(MAIN_ROUTE)
                 },
                 onCreateNewAccount = {
                     navController.navigate(SIGN_UP_ROUTE)
@@ -53,15 +50,15 @@ fun JetAuthNavHost(
                     navController.navigate(SIGN_IN_ROUTE)
                 },
                 onCreateNewAccount = {
-                    navController.navigate(HOME_ROUTE)
+                    navController.navigate(MAIN_ROUTE)
                 },
                 onNavUp = navController::navigateUp,
             )
         }
 
 
-        composable(HOME_ROUTE) {
-            HomeRoute()
+        composable(MAIN_ROUTE) {
+            MainRoute()
         }
     }
 }
