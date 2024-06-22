@@ -2,7 +2,9 @@ package com.jetauth.home.presentation
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -16,12 +18,19 @@ import com.jetauth.ui.theme.JetAuthTheme
 fun HomeScreen(){
     Scaffold (
         content = {innerPadding ->
-            Column(
-                modifier = Modifier.padding(innerPadding),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ) {
-                Text(text = """ Home Screen""")
+            Box (
+                modifier = Modifier.padding(innerPadding).fillMaxSize()
+            ){
+                Column(
+                    modifier = Modifier.align(Alignment.Center),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+
+                ) {
+                    Text(
+                        text = """ Home Screen"""
+                    )
+                }
             }
 
         }

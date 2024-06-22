@@ -148,17 +148,3 @@ fun SignUpContent(
 }
 
 
-
-@Preview(name = "Sign in light theme", uiMode = Configuration.UI_MODE_NIGHT_NO)
-//@Preview(name = "Sign in dark theme", uiMode = UI_MODE_NIGHT_YES)
-@Composable
-fun SignUpPreview() {
-    JetAuthTheme {
-        SignInScreen(
-            email = null,
-            onSignInSubmitted = { _, _ -> },
-            onCreateNewAccount = {},
-            onNavUp = {},
-        )
-    }
-}

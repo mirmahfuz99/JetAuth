@@ -89,6 +89,13 @@ dependencies {
 
     implementation("androidx.room:room-paging:$room_version")
 
+
+    //Testing
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    testImplementation ("androidx.test:core:1.5.0")
+    testImplementation ("org.mockito:mockito-core:3.10.0")
+
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)

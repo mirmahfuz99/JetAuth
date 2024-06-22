@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Snackbar
@@ -29,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -52,9 +54,10 @@ fun SignInScreen(
     onSignInSubmitted: (email: String, password: String) -> Unit,
     onCreateNewAccount: () -> Unit,
     onNavUp: () -> Unit,
+    isLoading: Boolean,
+    snackbarHostState: SnackbarHostState
 ) {
 
-    val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
 
     val snackbarErrorText = stringResource(id = R.string.feature_not_available)
@@ -71,9 +74,11 @@ fun SignInScreen(
                     SignInContent(
                         email = email,
                         onSignInSubmitted = onSignInSubmitted,
+                        isLoading = isLoading,
                         forgotContent = {
                             TextButton(
                                 onClick = {
+                                    snackbarHostState.currentSnackbarData?.dismiss()
                                     scope.launch {
                                         snackbarHostState.showSnackbar(
                                             message = snackbarErrorText,
@@ -111,6 +116,7 @@ fun SignInContent(
     email: String?,
     onSignInSubmitted: (email: String, password: String) -> Unit,
     forgotContent: @Composable () -> Unit,
+    isLoading: Boolean
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
@@ -162,10 +168,15 @@ fun SignInContent(
             shape = RoundedCornerShape(10.dp),
             enabled = emailState.isValid && passwordState.isValid
         ) {
-            Text(
-                modifier = Modifier.padding(15.dp),
-                text = stringResource(id = R.string.login)
-            )
+             if(isLoading){
+                 CircularProgressIndicator(
+                     color = MaterialTheme.colorScheme.onPrimary)
+             } else {
+                 Text(
+                     modifier = Modifier.padding(15.dp),
+                     text = stringResource(id = R.string.login)
+                 )
+             }
         }
     }
 }
@@ -213,11 +224,16 @@ fun ErrorSnackbar(
 @Composable
 fun SignInPreview() {
     JetAuthTheme {
+
+        val snackbarHostState = remember { SnackbarHostState() }
+
         SignInScreen(
             email = null,
             onSignInSubmitted = { _, _ -> },
             onCreateNewAccount = {},
             onNavUp = {},
+            isLoading = false,
+            snackbarHostState = snackbarHostState,
         )
     }
 }
