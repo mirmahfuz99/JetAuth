@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.navigation.compose.rememberNavController
 import com.jetauth.ui.theme.JetAuthTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -16,6 +17,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             JetAuthTheme {
+                val navController = rememberNavController()
                 JetAuthNavHost()
             }
         }

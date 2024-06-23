@@ -69,6 +69,8 @@ dependencies {
     implementation (libs.converter.gson)
     implementation (libs.okhttp)
     implementation (libs.logging.interceptor)
+    implementation ("com.google.code.gson:gson:2.10.1")
+
 
     //Dagger - Hilt
     implementation("com.google.dagger:hilt-android:2.48")

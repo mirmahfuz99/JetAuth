@@ -6,9 +6,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.jetauth.core.db.JetAuthDatabase
-import com.jetauth.features.login.data.repository.LoginRepository
+import com.jetauth.features.login.domain.repository.LoginRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import java.lang.Error
 import javax.inject.Inject
 @HiltViewModel
 class SignInViewModel @Inject constructor (

@@ -4,6 +4,7 @@ import android.util.Log
 import com.jetauth.core.api.JetAuthApi
 import com.jetauth.core.db.JetAuthDatabase
 import com.jetauth.features.login.data.model.LoginRequest
+import com.jetauth.features.login.domain.repository.LoginRepository
 import retrofit2.HttpException
 import javax.inject.Inject
 

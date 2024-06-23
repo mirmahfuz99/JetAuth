@@ -1,5 +1,4 @@
 package com.jetauth
-
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -11,6 +10,7 @@ import com.jetauth.Destinations.SIGN_UP_ROUTE
 import com.jetauth.auth.MainRoute
 import com.jetauth.auth.SignInRoute
 import com.jetauth.auth.SignUpRoute
+import com.jetauth.core.db.JetAuthDatabase
 
 object Destinations {
     const val SIGN_UP_ROUTE = "signup"

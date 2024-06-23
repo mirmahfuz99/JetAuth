@@ -31,6 +31,7 @@ class SignUpViewModel @Inject constructor(
             is Result.Error -> {
                 Log.d("signup",userPreferences.exception.message.toString())
             }
+            Result.Loading -> TODO()
         }
 
     }
