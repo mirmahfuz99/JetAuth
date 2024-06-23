@@ -1,4 +1,4 @@
-package com.jetauth.features.home.domain
+package com.jetauth.features.home.domain.repository
 
 import android.content.Context
 import com.jetauth.core.Result

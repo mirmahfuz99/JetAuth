@@ -6,7 +6,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.jetauth.core.Result
 import com.jetauth.features.home.data.model.Product
-import com.jetauth.features.home.domain.ProductRepository
+import com.jetauth.features.home.domain.repository.ProductRepository
 import okio.IOException
 import javax.inject.Inject
 
