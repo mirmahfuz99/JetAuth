@@ -19,4 +19,12 @@
     <string name="name">Name</string>
     <string name="confirm_password">Confirm Passsword</string>
     <string name="jetpackCompose">Jetpack Compose</string>
+    <string name="myAccount">My Account</string>
+    <string name="profile">Dummpy Profile</string>
+    <string name="account">Account</string>
+    <string name="notification">Notification</string>
+    <string name="wishlist">Wishlist</string>
+    <string name="fullname">Full Name</string>
+    <string name="streetAddress">Street Address</string>
+    <string name="save">Save</string>
 </resources>

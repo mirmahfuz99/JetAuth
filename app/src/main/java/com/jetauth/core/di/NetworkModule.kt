@@ -1,11 +1,14 @@
 package com.jetauth.core.di
 
+import android.util.Log
 import com.jetauth.core.api.Constants
 import com.jetauth.core.api.JetAuthApi
+import com.jetauth.core.db.JetAuthDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -19,7 +22,9 @@ import javax.inject.Singleton
 object NetworkModule {
     @Singleton
     @Provides
-    fun providesOkHttpClient(): OkHttpClient {
+    fun providesOkHttpClient(
+        jetAuthDatabase: JetAuthDatabase
+    ): OkHttpClient {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
@@ -29,7 +34,19 @@ object NetworkModule {
                 Interceptor { chain ->
                     val builder = chain.request().newBuilder()
                     val language = Constants.ENGLISH_LOCALE_LANG
-                    builder.header("Accept-Language", language)
+                    builder.header(
+                        "Accept-Language", language,
+                    )
+                    builder.addHeader(
+                        "Content-Type", "application/x-www-form-urlencoded",
+                    )
+                    val token = runBlocking {
+                         jetAuthDatabase.userPreferencesDao().getUserPreferences()?.token.toString()
+                    }
+                    Log.d("token", token)
+                    builder.addHeader(
+                        "Authorization", "Bearer $token",
+                    )
                     return@Interceptor chain.proceed(builder.build())
                 }
             )

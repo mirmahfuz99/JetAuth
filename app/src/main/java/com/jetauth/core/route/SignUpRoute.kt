@@ -1,4 +1,4 @@
-package com.jetauth.auth
+package com.jetauth.core.route
 
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel

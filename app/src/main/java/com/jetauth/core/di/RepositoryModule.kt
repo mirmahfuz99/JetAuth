@@ -6,6 +6,8 @@ import com.jetauth.features.home.data.repository.ProductRepositoryImpl
 import com.jetauth.features.home.domain.repository.ProductRepository
 import com.jetauth.features.login.data.repository.LoginRepoImpl
 import com.jetauth.features.login.domain.repository.LoginRepository
+import com.jetauth.features.profile.data.repository.ProfileRepositoryImpl
+import com.jetauth.features.profile.domain.ProfileRepository
 import com.jetauth.features.signup.data.repository.SignUpRepository
 import com.jetauth.features.signup.data.repository.SignUpRepositoryImpl
 import dagger.Module
@@ -41,5 +43,14 @@ object RepositoryModule {
     fun provideProductsRepository(
     ): ProductRepository {
         return ProductRepositoryImpl()
+    }
+
+    @Provides
+    @Singleton
+    fun provideProfileRepository(
+        jetAuthApi: JetAuthApi,
+        jetAuthDatabase: JetAuthDatabase
+    ): ProfileRepository {
+        return  ProfileRepositoryImpl(jetAuthApi = jetAuthApi,jetAuthDatabase = jetAuthDatabase )
     }
 }

@@ -17,8 +17,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.jetauth.core.route.ProfileRoute
 import com.jetauth.features.home.presentation.pages.HomeScreen
-import com.jetauth.features.profile.presentation.ProfileScreen
+import com.jetauth.features.profile.presentation.pages.ProfileScreen
 import com.jetauth.utils.navigation.Screens
 import com.jetauth.utils.navigation.listOfNavItems
 
@@ -77,7 +78,7 @@ fun MainScreen(){
                 HomeScreen()
             }
             composable(route = Screens.ProfileScreen.name){
-                ProfileScreen()
+                ProfileRoute()
             }
         }
     }

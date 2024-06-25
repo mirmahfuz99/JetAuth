@@ -7,10 +7,9 @@ import androidx.navigation.compose.rememberNavController
 import com.jetauth.Destinations.MAIN_ROUTE
 import com.jetauth.Destinations.SIGN_IN_ROUTE
 import com.jetauth.Destinations.SIGN_UP_ROUTE
-import com.jetauth.auth.MainRoute
-import com.jetauth.auth.SignInRoute
-import com.jetauth.auth.SignUpRoute
-import com.jetauth.core.db.JetAuthDatabase
+import com.jetauth.core.route.MainRoute
+import com.jetauth.core.route.SignInRoute
+import com.jetauth.core.route.SignUpRoute
 
 object Destinations {
     const val SIGN_UP_ROUTE = "signup"
@@ -24,7 +23,8 @@ fun JetAuthNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = SIGN_IN_ROUTE,
+//        startDestination = SIGN_IN_ROUTE,
+        startDestination = MAIN_ROUTE,
     ) {
 
         composable(SIGN_IN_ROUTE) {

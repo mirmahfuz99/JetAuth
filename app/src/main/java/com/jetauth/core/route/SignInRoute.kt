@@ -1,4 +1,4 @@
-package com.jetauth.auth
+package com.jetauth.core.route
 
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable

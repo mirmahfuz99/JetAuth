@@ -13,12 +13,12 @@ class NameState(val name: String? = null) :
 /**
  * Returns an error to be displayed or null if no error was found
  */
-private fun nameValidationError(email: String): String {
+private fun nameValidationError(name: String): String {
     return "Invalid name"
 }
 
-private fun isNameValid(email: String): Boolean {
-    return email.length > 2
+private fun isNameValid(name: String): Boolean {
+    return name.length > 2
 }
 
 val NameStateSaver = textFieldStateSaver(NameState())

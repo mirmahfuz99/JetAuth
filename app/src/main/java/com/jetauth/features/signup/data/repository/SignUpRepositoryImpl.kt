@@ -5,8 +5,6 @@ import com.jetauth.core.Result
 import com.jetauth.core.api.JetAuthApi
 import com.jetauth.features.signup.data.model.SignupRequest
 import com.jetauth.features.signup.data.model.SignupResponse
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import javax.inject.Inject
 
