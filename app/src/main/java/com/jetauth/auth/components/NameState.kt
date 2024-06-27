@@ -22,3 +22,4 @@ private fun isNameValid(name: String): Boolean {
 }
 
 val NameStateSaver = textFieldStateSaver(NameState())
+val LastNameStateSaver = textFieldStateSaver(NameState())

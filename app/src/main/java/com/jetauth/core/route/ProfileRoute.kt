@@ -2,6 +2,8 @@ package com.jetauth.core.route
 
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.res.stringResource
@@ -22,6 +24,8 @@ fun ProfileRoute (){
     val snackbarHostState = remember { SnackbarHostState() }
     val snackbarActionLabel = stringResource(id = R.string.dismiss)
 
+    val user by profileViewModel.user.collectAsState(initial = null)
+
     ProfileScreen(
         onUpdateProfileSubmit = {
             firstName, lastName ->
@@ -30,7 +34,8 @@ fun ProfileRoute (){
             }
         },
         isLoading = isLoading,
-        snackbarHostState = snackbarHostState
+        snackbarHostState = snackbarHostState,
+        user = user,
     )
 
 }

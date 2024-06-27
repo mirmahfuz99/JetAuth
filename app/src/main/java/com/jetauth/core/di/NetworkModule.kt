@@ -44,9 +44,12 @@ object NetworkModule {
                          jetAuthDatabase.userPreferencesDao().getUserPreferences()?.token.toString()
                     }
                     Log.d("token", token)
-                    builder.addHeader(
-                        "Authorization", "Bearer $token",
-                    )
+                    if(token != "null"){
+                        builder.addHeader(
+                            "Authorization", "Bearer $token",
+                        )
+                    }
+
                     return@Interceptor chain.proceed(builder.build())
                 }
             )

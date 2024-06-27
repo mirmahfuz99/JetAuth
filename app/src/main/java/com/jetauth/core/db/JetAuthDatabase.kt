@@ -12,7 +12,7 @@ import com.jetauth.features.profile.data.model.User
         UserPreferences::class,
         User::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class JetAuthDatabase: RoomDatabase() {

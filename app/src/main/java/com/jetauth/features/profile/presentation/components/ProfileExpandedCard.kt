@@ -42,14 +42,18 @@ import androidx.compose.ui.unit.dp
 import com.jetauth.R
 import com.jetauth.auth.components.EmailState
 import com.jetauth.auth.components.EmailStateSaver
+import com.jetauth.auth.components.LastNameStateSaver
+import com.jetauth.auth.components.NameState
 import com.jetauth.auth.components.NameStateSaver
+import com.jetauth.features.profile.data.model.User
 import com.jetauth.ui.theme.stronglyDeemphasizedAlpha
 
 @Composable
 fun ProfileExpendedCard(
     onUpdateProfileSubmit: (firstName: String, lastName: String) -> Unit,
     isLoading: Boolean,
-    email: String?
+    email: String?,
+    user: User?,
 ){
     var expanded by remember { mutableStateOf(true) }
     val focusRequester = remember { FocusRequester() }
@@ -57,15 +61,15 @@ fun ProfileExpendedCard(
     Column(
     ) {
         val emailState by rememberSaveable(stateSaver = EmailStateSaver) {
-            mutableStateOf(EmailState(email))
+            mutableStateOf(EmailState(user?.firstName + user?.lastName))
         }
 
         val firstNameState by rememberSaveable(stateSaver = NameStateSaver) {
-            mutableStateOf(EmailState(email))
+            mutableStateOf(NameState())
         }
 
-        val lastNameState by rememberSaveable(stateSaver = NameStateSaver) {
-            mutableStateOf(EmailState(email))
+        val lastNameState by rememberSaveable(stateSaver = LastNameStateSaver) {
+            mutableStateOf(NameState())
         }
 
         Card (
@@ -106,24 +110,24 @@ fun ProfileExpendedCard(
                         .padding(16.dp)
                 ) {
                     Text(
-                        text = stringResource(id = R.string.email),
+                        text = stringResource(id = R.string.fullname),
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = stronglyDeemphasizedAlpha),
                     )
                     ProfileEmail(emailState, onImeAction = { focusRequester.requestFocus() })
 
                     Spacer(modifier = Modifier.height(20.dp))
                     Text(
-                        text = stringResource(id = R.string.fullname),
+                        text = stringResource(id = R.string.firstname),
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = stronglyDeemphasizedAlpha)
                     )
-                    FullName(emailState, onImeAction = { focusRequester.requestFocus() })
+                    FirstName(firstNameState, onImeAction = { focusRequester.requestFocus() })
 
                     Spacer(modifier = Modifier.height(20.dp))
                     Text(
-                        text = stringResource(id = R.string.streetAddress),
+                        text = stringResource(id = R.string.lastName),
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = stronglyDeemphasizedAlpha)
                     )
-                    FullName(emailState, onImeAction = { focusRequester.requestFocus() })
+                    LastName(lastNameState, onImeAction = { focusRequester.requestFocus() })
                     Spacer(modifier = Modifier.height(20.dp))
                     Row(
                         horizontalArrangement = Arrangement.SpaceBetween

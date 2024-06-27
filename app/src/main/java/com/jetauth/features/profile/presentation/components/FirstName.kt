@@ -13,14 +13,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import com.jetauth.auth.components.EmailState
+import com.jetauth.auth.components.NameState
 import com.jetauth.auth.components.TextFieldError
 import com.jetauth.auth.components.TextFieldState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FullName(
-    nameState: TextFieldState = remember { EmailState() },
+fun FirstName(
+    firstNameState: TextFieldState = remember { NameState() },
     imeAction: ImeAction = ImeAction.Next,
     onImeAction: () -> Unit = {}
 ) {
@@ -28,21 +28,21 @@ fun FullName(
         colors = OutlinedTextFieldDefaults.colors(
             unfocusedBorderColor = MaterialTheme.colorScheme.onSurface
         ),
-        value = nameState.text,
+        value = firstNameState.text,
         onValueChange = {
-            nameState.text = it
+            firstNameState.text = it
         },
 
         modifier = Modifier
             .fillMaxWidth()
             .onFocusChanged { focusState ->
-                nameState.onFocusChange(focusState.isFocused)
+                firstNameState.onFocusChange(focusState.isFocused)
                 if (!focusState.isFocused) {
-                    nameState.enableShowErrors()
+                    firstNameState.enableShowErrors()
                 }
             },
         textStyle = MaterialTheme.typography.bodyMedium,
-        isError = nameState.showErrors(),
+        isError = firstNameState.showErrors(),
         keyboardOptions = KeyboardOptions.Default.copy(
             imeAction = imeAction,
             keyboardType = KeyboardType.Email
@@ -55,5 +55,5 @@ fun FullName(
         singleLine = true
     )
 
-    nameState.getError()?.let { error -> TextFieldError(textError = error) }
+    firstNameState.getError()?.let { error -> TextFieldError(textError = error) }
 }

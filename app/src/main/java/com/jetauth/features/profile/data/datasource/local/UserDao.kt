@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.jetauth.features.profile.data.model.User
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserDao {
@@ -12,7 +13,7 @@ interface UserDao {
     suspend fun insert(user: User)
 
     @Query("SELECT * FROM user LIMIT 1")
-    suspend fun getUser(): User?
+    fun getUser(): Flow<User?>
 
     @Query("DELETE FROM user")
     suspend fun clear()

@@ -27,4 +27,6 @@
     <string name="fullname">Full Name</string>
     <string name="streetAddress">Street Address</string>
     <string name="save">Save</string>
+    <string name="firstname">First Name</string>
+    <string name="lastName">Last Name</string>
 </resources>
