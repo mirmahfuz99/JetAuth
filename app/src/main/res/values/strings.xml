@@ -29,4 +29,5 @@
     <string name="save">Save</string>
     <string name="firstname">First Name</string>
     <string name="lastName">Last Name</string>
+    <string name="productList">Product List</string>
 </resources>

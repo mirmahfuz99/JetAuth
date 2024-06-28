@@ -1,5 +1,8 @@
 package com.jetauth
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -10,6 +13,8 @@ import com.jetauth.Destinations.SIGN_UP_ROUTE
 import com.jetauth.core.route.MainRoute
 import com.jetauth.core.route.SignInRoute
 import com.jetauth.core.route.SignUpRoute
+import com.jetauth.features.login.presentation.viewmodel.SignInViewModel
+import kotlin.math.sign
 
 object Destinations {
     const val SIGN_UP_ROUTE = "signup"
@@ -21,10 +26,20 @@ object Destinations {
 fun JetAuthNavHost(
     navController: NavHostController = rememberNavController(),
 ) {
+
+
+    val signInViewModel: SignInViewModel = hiltViewModel()
+    val userPreferences by signInViewModel.userPreferences.collectAsState(initial = null)
+
+    val startDestination = if (userPreferences?.token.isNullOrEmpty()) {
+        "SIGN_IN_ROUTE"
+    } else {
+        "MAIN_ROUTE"
+    }
+
     NavHost(
         navController = navController,
-//        startDestination = SIGN_IN_ROUTE,
-        startDestination = MAIN_ROUTE,
+        startDestination = startDestination,
     ) {
 
         composable(SIGN_IN_ROUTE) {

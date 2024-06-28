@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.jetauth.features.login.data.model.UserPreferences
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserPreferencesDao {
@@ -12,7 +13,7 @@ interface UserPreferencesDao {
     suspend fun insert(userPreferences: UserPreferences)
 
     @Query("SELECT * FROM user_preferences LIMIT 1")
-    suspend fun getUserPreferences(): UserPreferences?
+    fun getUserPreferences(): Flow<UserPreferences?>
 
     @Query("DELETE FROM user_preferences")
     suspend fun clear()
