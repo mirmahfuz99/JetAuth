@@ -27,6 +27,10 @@ class ProfileViewModel @Inject constructor(
         firstName: String,
         lastName: String
     ){
+
+        Log.d("firstName", firstName)
+        Log.d("lastName", lastName)
+
         isLoading = true
         profileRepository.updateProfile(firstName,lastName)
         isLoading = false

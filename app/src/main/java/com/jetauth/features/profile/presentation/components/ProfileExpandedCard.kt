@@ -1,5 +1,6 @@
 package com.jetauth.features.profile.presentation.components
 
+import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -60,17 +61,16 @@ fun ProfileExpendedCard(
 
     Column(
     ) {
-        val emailState by rememberSaveable(stateSaver = EmailStateSaver) {
-            mutableStateOf(EmailState(user?.firstName + user?.lastName))
+
+
+        val firstNameState = remember(user) {
+            NameState(user?.firstName.orEmpty())
         }
 
-        val firstNameState by rememberSaveable(stateSaver = NameStateSaver) {
-            mutableStateOf(NameState())
+        val lastNameState by remember(user) {
+            mutableStateOf(NameState(user?.lastName.orEmpty()))
         }
 
-        val lastNameState by rememberSaveable(stateSaver = LastNameStateSaver) {
-            mutableStateOf(NameState())
-        }
 
         Card (
             modifier = Modifier.shadow(
@@ -85,7 +85,7 @@ fun ProfileExpendedCard(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp)
-                    .clickable( onClick = {
+                    .clickable(onClick = {
                         expanded = !expanded
                     })
                 ,
@@ -113,7 +113,10 @@ fun ProfileExpendedCard(
                         text = stringResource(id = R.string.fullname),
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = stronglyDeemphasizedAlpha),
                     )
-                    ProfileEmail(emailState, onImeAction = { focusRequester.requestFocus() })
+                    user?.let {
+                        user.firstName?.let { it1 -> FullName(user.firstName + " " + user.lastName, onImeAction = { focusRequester.requestFocus() }) }
+                    }
+
 
                     Spacer(modifier = Modifier.height(20.dp))
                     Text(
@@ -133,7 +136,11 @@ fun ProfileExpendedCard(
                         horizontalArrangement = Arrangement.SpaceBetween
                     ){
                         Button(
-                            onClick = { onUpdateProfileSubmit(firstNameState.text, lastNameState.text)},
+                            onClick = {
+//                                  Log.d("firstName", firstNameState.text)
+//                                  Log.d("lastName", lastNameState.text)
+                                onUpdateProfileSubmit(firstNameState.text, lastNameState.text)
+                            },
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(vertical = 25.dp),

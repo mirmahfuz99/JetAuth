@@ -1,5 +1,6 @@
 package com.jetauth.core.route
 
+import android.util.Log
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -25,6 +26,7 @@ fun ProfileRoute (){
     val snackbarActionLabel = stringResource(id = R.string.dismiss)
 
     val user by profileViewModel.user.collectAsState(initial = null)
+    Log.d("user_updated", user?.firstName.toString())
 
     ProfileScreen(
         onUpdateProfileSubmit = {
