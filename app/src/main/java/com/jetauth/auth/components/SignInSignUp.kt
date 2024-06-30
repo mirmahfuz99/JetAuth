@@ -169,13 +169,13 @@ fun Name(
                 painter = painterResource(id = R.drawable.name),
                 contentDescription = stringResource(id = R.string.name))
         },
-        /*label = {
+        label = {
             Text(
                 text = stringResource(id = R.string.name),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = stronglyDeemphasizedAlpha),
             )
-        },*/
+        },
         modifier = Modifier
             .fillMaxWidth()
             .onFocusChanged { focusState ->

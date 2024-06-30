@@ -13,7 +13,7 @@ interface UserPreferencesDao {
     suspend fun insert(userPreferences: UserPreferences)
 
     @Query("SELECT * FROM user_preferences LIMIT 1")
-    fun getUserPreferences(): Flow<UserPreferences?>
+    suspend fun getUserPreferences(): UserPreferences?
 
     @Query("DELETE FROM user_preferences")
     suspend fun clear()

@@ -21,6 +21,7 @@ okhttp = "5.0.0-alpha.2"
 retrofit = "2.9.0"
 daggerHiltAndroid = "2.48.1"
 androidLibrary = "7.3.1"
+runtimeLivedata = "1.6.8"
 
 
 [libraries]
@@ -51,6 +52,7 @@ androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
 androidx-compose-material-iconsExtended = { module = "androidx.compose.material:material-icons-extended" }
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
 
 
 

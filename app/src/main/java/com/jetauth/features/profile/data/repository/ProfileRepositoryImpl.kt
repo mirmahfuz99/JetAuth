@@ -14,11 +14,15 @@ class ProfileRepositoryImpl @Inject constructor(
 ) : ProfileRepository(){
     override suspend fun updateProfile(firstName: String, lastName: String) {
         try {
-            val params = mapOf(
-                "first_name" to firstName,
-                "last_name" to lastName
+            val token = "Bearer ${jetAuthDatabase.userPreferencesDao().getUserPreferences()?.token}"
+
+            val response = jetAuthApi.updateProfile(
+                authHeader ="$token",
+                ProfileRequest(
+                    first_name = firstName,
+                    last_name = lastName,
+                )
             )
-            val response = jetAuthApi.updateProfile(params = params)
             jetAuthDatabase.userDao().insert(response)
 
         } catch (e:HttpException){

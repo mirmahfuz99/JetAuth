@@ -13,6 +13,7 @@ class SignUpRepositoryImpl @Inject constructor(
 ) : SignUpRepository() {
     override suspend fun signup(userName: String, password: String, email: String): Result<SignupResponse> {
         return try {
+            Log.d("inside_signup", "okay")
             val response = jetAuthApi.signup(SignupRequest(username = userName, password = password, email = email))
             if (response.isSuccessful) {
                 response.body()?.let {

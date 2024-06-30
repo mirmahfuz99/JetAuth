@@ -33,12 +33,8 @@ object NetworkModule {
             .addInterceptor(
                 Interceptor { chain ->
                     val builder = chain.request().newBuilder()
-                    val language = Constants.ENGLISH_LOCALE_LANG
-                    builder.header(
-                        "Accept-Language", language,
-                    )
                     builder.addHeader(
-                        "Content-Type", "application/x-www-form-urlencoded",
+                        "Content-Type", "application/json",
                     )
                     val token = runBlocking {
                          jetAuthDatabase.userPreferencesDao().getUserPreferences()?.token.toString()
