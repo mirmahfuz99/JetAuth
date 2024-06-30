@@ -1,4 +1,5 @@
 package com.jetauth
+import android.util.Log
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -33,56 +34,51 @@ fun JetAuthNavHost(
 
     val userPreferences by signInViewModel.userPreferences.observeAsState()
 
-
-    if (userPreferences == null) {
-        // Show a loading indicator or splash screen while user preferences are being loaded
-        CircularProgressIndicator()
+    Log.d("token_check", userPreferences?.token.toString())
+    // Once user preferences are loaded, determine the start destination
+    val startDestination = if (userPreferences?.token.isNullOrEmpty()) {
+        SIGN_IN_ROUTE
     } else {
-        // Once user preferences are loaded, determine the start destination
-        val startDestination = if (userPreferences?.token.isNullOrEmpty()) {
-            SIGN_IN_ROUTE
-        } else {
-            MAIN_ROUTE
+        MAIN_ROUTE
+    }
+
+    NavHost(
+        navController = navController,
+        startDestination = startDestination,
+    ) {
+
+        composable(SIGN_IN_ROUTE) {
+            val startingEmail = it.arguments?.getString("email")
+            SignInRoute(
+                email = startingEmail,
+                onSignInSubmitted = {
+                    //read data from local storage
+                    navController.navigate(MAIN_ROUTE)
+                },
+                onCreateNewAccount = {
+                    navController.navigate(SIGN_UP_ROUTE)
+                },
+                onNavUp = navController::navigateUp,
+            )
         }
 
-        NavHost(
-            navController = navController,
-            startDestination = startDestination,
-        ) {
-
-            composable(SIGN_IN_ROUTE) {
-                val startingEmail = it.arguments?.getString("email")
-                SignInRoute(
-                    email = startingEmail,
-                    onSignInSubmitted = {
-                        //read data from local storage
-                        navController.navigate(MAIN_ROUTE)
-                    },
-                    onCreateNewAccount = {
-                        navController.navigate(SIGN_UP_ROUTE)
-                    },
-                    onNavUp = navController::navigateUp,
-                )
-            }
-
-            composable(SIGN_UP_ROUTE) {
-                val startingEmail = it.arguments?.getString("email")
-                SignUpRoute(
-                    email = startingEmail,
-                    onSignUpSubmitted = {
-                        navController.navigate(SIGN_IN_ROUTE)
-                    },
-                    onCreateNewAccount = {
-                        navController.navigate(MAIN_ROUTE)
-                    },
-                    onNavUp = navController::navigateUp,
-                )
-            }
+        composable(SIGN_UP_ROUTE) {
+            val startingEmail = it.arguments?.getString("email")
+            SignUpRoute(
+                email = startingEmail,
+                onSignUpSubmitted = {
+                    navController.navigate(SIGN_IN_ROUTE)
+                },
+                onCreateNewAccount = {
+                    navController.navigate(MAIN_ROUTE)
+                },
+                onNavUp = navController::navigateUp,
+            )
+        }
 
 
-            composable(MAIN_ROUTE) {
-                MainRoute()
-            }
+        composable(MAIN_ROUTE) {
+            MainRoute()
         }
     }
 }
